@@ -1,0 +1,24 @@
+class Solution {
+    public String reverseWords(String s) {
+        String o="",t="";
+        int i,n=s.length();
+        for(i=0;i<n;i++)
+        {
+            if(s.charAt(i)==' ')
+            {
+                if(t.equals(""))
+                continue;
+                else
+                {
+                o=t+" "+o;
+                t="";
+                }
+            }
+            else
+            t=t+s.charAt(i);
+        }
+        if(t!="")
+        o=t+" "+o;
+        return(o.trim());
+    }
+}
