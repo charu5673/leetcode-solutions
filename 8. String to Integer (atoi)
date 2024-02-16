@@ -1,0 +1,60 @@
+class Solution {
+    public int myAtoi(String s) {
+        int i,sn=0,d=0,k=0;
+        long n=0;
+        String t="";
+        for(i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)==' ')
+            {
+                if(d==0)
+            continue;
+            else
+            break;
+            }
+            else if(s.charAt(i)=='+')
+            {
+                if(d==0)
+                {
+                    d=1;
+                sn=0;
+                }
+                else
+                break;
+            }
+            else if(s.charAt(i)=='-')
+            {
+                if(d==0)
+                {
+                    d=1;
+                sn=1;
+                }
+                else
+                break;
+            }
+            else if((int)s.charAt(i)>=48&&(int)s.charAt(i)<=57)
+            {
+                d=1;
+                if(s.charAt(i)!='0'||n>0)
+                t=t+s.charAt(i);
+                n=n*10+(int)s.charAt(i)-48;
+            }
+            else
+            break;
+        }
+        if(t.length()>10)
+        {
+            if(sn==0)
+        return(2147483647);
+        else
+        return(-2147483648);
+        }
+        if(sn==0&&n>2147483647)
+        n=2147483647;
+        else if(sn==1&&n*-1<-2147483648)
+        n=-2147483648;
+        else if(sn==1)
+        n*=-1;
+        return((int)n);
+    }
+}
