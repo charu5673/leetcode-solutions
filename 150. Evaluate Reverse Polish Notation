@@ -1,0 +1,28 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        int s[]=new int[tokens.length/2+1];
+        int i,t=-1;
+        char c;
+        for(i=0;i<tokens.length;i++)
+        {
+            c=tokens[i].charAt(0);
+            if((c=='+'||c=='-'||c=='/'||c=='*')&&tokens[i].length()==1)
+            {
+                switch(c)
+                {
+                    case '+': s[t-1]=s[t]+s[t-1]; break;
+                    case '-': s[t-1]=s[t-1]-s[t]; break;
+                    case '*': s[t-1]=s[t]*s[t-1]; break;
+                    case '/': s[t-1]=s[t-1]/s[t]; break;
+                }
+                t-=1;
+            }
+            else
+            {
+                t++;
+                s[t]=Integer.valueOf(tokens[i]);
+            }
+        }
+        return s[0];
+    }
+}
