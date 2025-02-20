@@ -1,0 +1,23 @@
+class Solution {
+    List<List<Integer>> l=new LinkedList<List<Integer>>();
+    public List<List<Integer>> subsets(int[] nums) {
+        getS(nums,new LinkedList<Integer>(),0);
+        LinkedList<Integer> cl=new LinkedList<Integer>();
+        l.add(cl);
+        return l;
+    }
+    public void getS(int[] nums,LinkedList<Integer> ll,int j)
+    {
+        if(j==nums.length)
+        return;
+        for(int i=j;i<nums.length;i++)
+        {
+            if(ll.contains(nums[i]))
+            continue;
+            ll.add(nums[i]);
+            l.add(new LinkedList<Integer>(ll));
+            getS(nums,ll,i+1);
+            ll.remove(ll.size()-1);
+        }
+    }
+}
