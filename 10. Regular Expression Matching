@@ -1,0 +1,36 @@
+class Solution {
+    HashMap<String,Boolean> h=new HashMap<String,Boolean>();
+    public boolean check(int i,int j,String s,String p)
+    {
+        if(h.containsKey(i+"."+j))
+        {
+            return h.get(i+"."+j);
+        }
+        int n=s.length();
+        int m=p.length();
+        if(i>=n&&j>=m)
+        return true;
+        if(j>=m)
+        return false;
+        boolean f=i<n&&(s.charAt(i)==p.charAt(j)||p.charAt(j)=='.');
+        if(j+1<m)
+        {
+            if(p.charAt(j+1)=='*')
+            {
+                h.put(i+"."+j,check(i,j+2,s,p)||(f&&check(i+1,j,s,p)));
+                    return h.get(i+"."+j);
+            }
+        }
+        if(f)
+           {
+            h.put(i+"."+j,check(i+1,j+1,s,p));
+            return h.get(i+"."+j);
+           } 
+        h.put(i+"."+j,false);
+        return false;
+    }
+    public boolean isMatch(String s, String p) {
+        int i=0,j=0;
+        return check(i,j,s,p);
+    }
+}
