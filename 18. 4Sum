@@ -1,0 +1,61 @@
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> l=new LinkedList<List<Integer>>();
+        Arrays.sort(nums);
+        int i,j,k,m;
+        for(i=0;i<nums.length-3;i++)
+        {
+            if(i>0)
+            {
+                if(nums[i]==nums[i-1])
+                continue;
+            }
+            for(m=i+1;m<nums.length-2;m++)
+            {
+                if(m>i+1)
+                {
+                    if(nums[m]==nums[m-1])
+                    continue;
+                }
+            j=m+1;
+            k=nums.length-1;
+            while(k>j)
+            {
+                if(j>m+1)
+                {
+                    if(nums[j]==nums[j-1])
+                    {
+                        j++;
+                        continue;
+                    }
+                }
+                if(k<nums.length-1)
+                {
+                    if(nums[k]==nums[k+1])
+                    {
+                        k--;
+                        continue;
+                    }
+                }
+                long s=(long)nums[i]+(long)nums[j]+(long)nums[k]+(long)nums[m];
+                if(s==(long)target)
+                {
+                    List ll=new LinkedList<Integer>();
+                    ll.add(nums[i]);
+                    ll.add(nums[j]);
+                    ll.add(nums[k]);
+                    ll.add(nums[m]);
+                    l.add(ll);
+                    j++;
+                    k--;
+                }
+                else if(s>target)
+                k--;
+                else
+                j++;
+            }
+            }
+        }
+        return l;
+    }
+}
