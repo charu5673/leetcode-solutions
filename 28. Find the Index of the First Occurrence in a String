@@ -1,0 +1,23 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        char x=needle.charAt(0),c=0;
+        int n=needle.length();
+        int m=haystack.length();
+        while(true)
+        {
+            int i=haystack.indexOf(x);
+            if(i==-1)
+            return -1;
+            else if(i+n-1<m)
+            {
+                if(haystack.substring(i,i+n).equals(needle))
+                return c+i;
+                haystack=haystack.substring(i+1);
+                c+=i+1;
+                m-=(i+1);
+            }
+            else
+            return -1;
+        }
+    }
+}
