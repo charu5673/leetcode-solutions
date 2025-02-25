@@ -1,0 +1,74 @@
+class Solution {
+    List<String> l=new LinkedList<String>();
+    public void dig(String d,int n,String s)
+    {
+        if(s.length()==n)
+        {
+            l.add(s);
+            return;
+        }
+        if(d.charAt(0)=='2')
+        {
+            dig(d.substring(1),n,s+"a");
+            dig(d.substring(1),n,s+"b");
+            dig(d.substring(1),n,s+"c");
+            return;
+        }
+        if(d.charAt(0)=='3')
+        {
+            dig(d.substring(1),n,s+"d");
+            dig(d.substring(1),n,s+"e");
+            dig(d.substring(1),n,s+"f");
+            return;
+        }
+        if(d.charAt(0)=='4')
+        {
+            dig(d.substring(1),n,s+"g");
+            dig(d.substring(1),n,s+"h");
+            dig(d.substring(1),n,s+"i");
+            return;
+        }
+        if(d.charAt(0)=='5')
+        {
+            dig(d.substring(1),n,s+"j");
+            dig(d.substring(1),n,s+"k");
+            dig(d.substring(1),n,s+"l");
+            return;
+        }
+        if(d.charAt(0)=='6')
+        {
+            dig(d.substring(1),n,s+"m");
+            dig(d.substring(1),n,s+"n");
+            dig(d.substring(1),n,s+"o");
+            return;
+        }
+        if(d.charAt(0)=='7')
+        {
+            dig(d.substring(1),n,s+"p");
+            dig(d.substring(1),n,s+"q");
+            dig(d.substring(1),n,s+"r");
+            dig(d.substring(1),n,s+"s");
+            return;
+        }
+        if(d.charAt(0)=='8')
+        {
+            dig(d.substring(1),n,s+"t");
+            dig(d.substring(1),n,s+"u");
+            dig(d.substring(1),n,s+"v");
+            return;
+        }
+        if(d.charAt(0)=='9')
+        {
+            dig(d.substring(1),n,s+"w");
+            dig(d.substring(1),n,s+"x");
+            dig(d.substring(1),n,s+"y");
+            dig(d.substring(1),n,s+"z");
+            return;
+        }
+    }
+    public List<String> letterCombinations(String digits) {
+        if(digits.length()!=0)
+        dig(digits,digits.length(),"");
+        return l;
+    }
+}
