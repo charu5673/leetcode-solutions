@@ -1,0 +1,53 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums)
+    {
+        List<List<Integer>> l=new LinkedList<List<Integer>>();
+        Arrays.sort(nums);
+        int i,j,k;
+        for(i=0;i<nums.length;i++)
+        {
+            if(i>0)
+            {
+                if(nums[i]==nums[i-1])
+                continue;
+            }
+            j=i+1;
+            k=nums.length-1;
+            while(k>j)
+            {
+                if(j>i+1)
+                {
+                    if(nums[j]==nums[j-1])
+                    {
+                        j++;
+                        continue;
+                    }
+                }
+                if(k<nums.length-1)
+                {
+                    if(nums[k]==nums[k+1])
+                    {
+                        k--;
+                        continue;
+                    }
+                }
+                int s=nums[i]+nums[j]+nums[k];
+                if(s==0)
+                {
+                    List ll=new LinkedList<Integer>();
+                    ll.add(nums[i]);
+                    ll.add(nums[j]);
+                    ll.add(nums[k]);
+                    l.add(ll);
+                    j++;
+                    k--;
+                }
+                else if(s>0)
+                k--;
+                else
+                j++;
+            }
+        }
+        return l;
+    }
+}
