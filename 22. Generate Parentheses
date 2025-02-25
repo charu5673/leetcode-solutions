@@ -1,0 +1,34 @@
+class Solution {
+        List<String> l=new LinkedList<String>();
+        int co=0;
+        public void par(String s,int o,int c,int n)
+        {
+            if(s.length()==2*n)
+            {
+                l.add(s);
+                return;
+            }
+            if(o<n&&c==o)
+            {
+                par(s+"(",o+1,c,n);
+            }
+            else if(o<n&&c>=o)
+            {
+                par(s+"(",o+1,c,n);
+            }
+            else if(o<n&&c<o)
+            {
+                par(s+"(",o+1,c,n);
+                par(s+")",o,c+1,n);
+            }
+            else if(o==n)
+            {
+                par(s+")",o,c+1,n);
+            }
+            return;
+        }
+    public List<String> generateParenthesis(int n) {
+        par("",0,0,n);
+        return l;
+    }
+}
