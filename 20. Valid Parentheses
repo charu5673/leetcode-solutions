@@ -1,0 +1,50 @@
+class Solution {
+    public boolean isSame(char c,char b)
+    {
+        if((c=='{'&&b=='}')||(c=='}'&&b=='{'))
+        return true;
+        if((c=='('&&b==')')||(c==')'&&b=='('))
+        return true;
+        if((c=='['&&b==']')||(c==']'&&b=='['))
+        return true;
+        return false;
+    }
+    public boolean isOpen(char c)
+    {
+        if(c=='('||c=='['||c=='{')
+        return true;
+        return false;
+    }
+    public boolean isClose(char c)
+    {
+        if(c==')'||c==']'||c=='}')
+        return true;
+        return false;
+    }
+    public boolean isValid(String s) {
+        int n=s.length();
+        char[] stack=new char[n];
+        int j=0;
+        for(int i=0;i<n;i++)
+        {
+            char c=s.charAt(i);
+            if(isOpen(c))
+            {
+                stack[j]=c;
+                j++;
+            }
+            if(isClose(c))
+            {
+                if(j==0)
+                return false;
+                if(isSame(c,stack[j-1]))
+                j--;
+                else
+                return false;
+            }
+        }
+        if(j==0)
+        return true;
+        return false;
+    }
+}
