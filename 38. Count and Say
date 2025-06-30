@@ -1,0 +1,26 @@
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1)
+        return "1";
+        String s=countAndSay(n-1);
+        String a="";
+        int c=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(i!=0)
+            {
+                if(s.charAt(i)==s.charAt(i-1))
+                c++;
+                else
+                {
+                    a=a+(String.valueOf(c)+s.charAt(i-1));
+                    c=1;
+                }
+            }
+            else
+            c++;
+        }
+        a=a+(String.valueOf(c)+s.charAt(s.length()-1));
+        return a;
+    }
+}
