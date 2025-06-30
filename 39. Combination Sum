@@ -1,0 +1,25 @@
+class Solution {
+    List<List<Integer>> l=new LinkedList<List<Integer>>();
+    public void rec(int[] a,int t,int s,List<Integer> ll,int i)
+    {
+        if(s==t&&!l.contains(ll))
+        {
+            l.add(new LinkedList<Integer>(ll));
+            return;
+        }
+        if(i==a.length)
+        return;
+        if(a[i]+s>t)
+        return;
+        ll.add(a[i]);
+        rec(a,t,s+a[i],ll,i);
+        rec(a,t,s+a[i],ll,i+1);
+        ll.remove(ll.indexOf(a[i]));
+        rec(a,t,s,ll,i+1);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        rec(candidates,target,0,new LinkedList<Integer>(),0);
+        return l;
+    }
+}
