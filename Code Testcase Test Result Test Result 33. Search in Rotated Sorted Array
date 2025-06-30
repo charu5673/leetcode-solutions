@@ -1,0 +1,26 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int f=0,l=nums.length-1,m=nums.length/2;
+        while(f<=l)
+        {
+            if(nums[m]==target)
+            break;
+            if(nums[m]>target)
+            {
+                    if(nums[f]>target&&nums[f]<=nums[m])
+                    f=m+1;
+                    else
+                    l=m-1;
+            }
+            else
+            {
+                    if(nums[l]<target&&nums[l]>=nums[m])
+                    l=m-1;
+                    else
+                    f=m+1;
+            }
+            m=f+(l-f)/2;
+        }
+        return (f>l)?-1:m;
+    }
+}
