@@ -1,0 +1,64 @@
+class Solution {
+    public void solveSudoku(char[][] board) {
+        solve(board,0,0);
+    }
+    public static boolean solve(char[][] board,int i,int j)
+    {
+        if(i>=9)
+        {
+            return true;
+        }
+        if(j>=9)
+        {
+            return(solve(board,i+1,0));
+        }
+        if(board[i][j]=='.')
+        {
+            for(int k=1;k<=9;k++)
+            {
+                if(isOk(board,i,j,k))
+                {
+                    board[i][j]=Integer.toString(k).charAt(0);
+                    if(solve(board,i,j+1))
+                    return true;
+                    board[i][j]='.';
+                }
+            }
+        }
+        else
+        return(solve(board,i,j+1));
+        return false;
+    }
+    public static boolean isOk(char[][] board,int i,int j,int x)
+    {
+        int gi,gj;
+        if(i<3)
+        gi=0;
+        else if(i<6)
+        gi=3;
+        else
+        gi=6;
+        if(j<3)
+        gj=0;
+        else if(j<6)
+        gj=3;
+        else
+        gj=6;
+        for(int k=gi;k<(gi+3);k++)
+        {
+            for(int l=gj;l<(gj+3);l++)
+            {
+                if(board[k][l]==Integer.toString(x).charAt(0))
+                return false;
+            }
+        }
+        for(int k=0;k<9;k++)
+        {
+            if(board[i][k]==Integer.toString(x).charAt(0))
+            return false;
+            if(board[k][j]==Integer.toString(x).charAt(0))
+            return false;
+        }
+        return true;
+    }
+}
