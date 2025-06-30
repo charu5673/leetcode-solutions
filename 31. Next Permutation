@@ -1,0 +1,54 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums.length==1)
+        return;
+        boolean f=true;
+        for(int i=1;i<nums.length;i++)
+        {
+            if(nums[i]>nums[i-1])
+            {
+                f=false;
+                break;
+            }
+        }
+        if(f)
+        Arrays.sort(nums);
+        else
+        {
+            int s=nums.length-1;
+            boolean flag=false;
+            int i;
+            for(i=nums.length-2;i>=0;i--)
+            {
+                if(nums[i]<nums[i+1])
+                break;
+            }
+            int ind=-1;
+            for(int j=i+1;j<nums.length;j++)
+            {
+                if(nums[j]>nums[i])
+                {
+                    if(ind==-1)
+                    ind=j;
+                    else if(nums[j]<nums[ind])
+                    ind=j;
+                }
+            }
+            int t=nums[ind];
+            nums[ind]=nums[i];
+            nums[i]=t;
+            for(i=i+1;i<nums.length-1;i++)
+            {
+                for(int j=i+1;j<nums.length;j++)
+                {
+                    if(nums[i]>nums[j])
+                    {
+                    t=nums[i];
+                    nums[i]=nums[j];
+                    nums[j]=t;
+                }
+                }
+            }
+        }
+    }
+}
