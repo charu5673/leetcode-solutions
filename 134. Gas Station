@@ -1,0 +1,20 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int ans = 0;
+        int c = 0;
+        int cc = 0;
+        for(int i = 0; i < gas.length; i++) {
+            c += gas[i];
+            c -= cost[i];
+            cc += gas[i];
+            cc -= cost[i];
+
+            if(cc < 0) {
+                cc = 0;
+                ans = i + 1;
+            }
+        }
+
+        return (c < 0) ? -1 : ans;
+    }
+}
