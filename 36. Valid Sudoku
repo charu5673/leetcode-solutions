@@ -1,0 +1,51 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        boolean f[] = new boolean[9];
+        boolean valid = true;
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                if(board[i][j] != '.') {
+                    if(f[(int)board[i][j] - 49]) {
+                        valid = false;
+                        break;
+                    } else f[(int)board[i][j] - 49] = true;
+                }
+            }
+            if(!valid) break;
+            Arrays.fill(f,false);
+        }
+        if(!valid) return valid;
+        Arrays.fill(f,false);
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                if(board[j][i] != '.') {
+                    if(f[(int)board[j][i] - 49]) {
+                        valid = false;
+                        break;
+                    } else f[(int)board[j][i] - 49] = true;
+                }
+            }
+            Arrays.fill(f,false);
+            if(!valid) break;
+        }
+        if(!valid) return valid;
+        Arrays.fill(f,false);
+        for(int i = 0; i < 9; i += 3) {
+            for(int j = 0; j < 9; j+= 3) {
+                for(int k = i; k < i + 3; k++) {
+                    for(int l = j; l < j + 3; l++) {
+                        if(board[k][l] != '.') {
+                            if(f[(int)board[k][l] - 49]) {
+                                valid = false;
+                                break;
+                            } else f[(int)board[k][l] - 49] = true;
+                        }
+                    }
+                }
+                Arrays.fill(f,false);
+                if(!valid) break;
+            }
+        }
+        return valid;
+    }
+}
