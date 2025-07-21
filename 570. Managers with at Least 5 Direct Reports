@@ -1,0 +1,7 @@
+# Write your MySQL query statement below
+SELECT name FROM (
+SELECT name, COUNT(*) as count FROM
+( SELECT e.name, e.id FROM 
+    Employee e INNER JOIN Employee m ON e.id = m.managerId
+) AS sub1 GROUP BY id
+) AS sub WHERE count > 4;
