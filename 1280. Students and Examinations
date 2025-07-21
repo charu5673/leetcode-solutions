@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+SELECT student_id, student_name, subject_name, COUNT(Examinations.subject_name) as attended_exams FROM ((Students  CROSS JOIN Subjects) NATURAL LEFT JOIN Examinations) GROUP BY student_id, student_name, subject_name ORDER BY student_id, subject_name;
