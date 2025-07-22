@@ -1,0 +1,5 @@
+# Write your MySQL query statement below
+SELECT product_id, IFNULL(ROUND(P/U,2),0) AS average_price FROM (
+    SELECT Prices.product_id, SUM(units) AS U, SUM(price*units) AS P FROM Prices LEFT JOIN UnitsSold ON Prices.product_id = UnitsSold.product_id AND UnitsSold.purchase_date <= Prices.end_date AND UnitsSold.purchase_date >= Prices.start_date
+    GROUP BY Prices.product_id
+) AS sub;
