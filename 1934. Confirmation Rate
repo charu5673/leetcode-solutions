@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+SELECT user_id, ROUND((sub.C / (sub.C + sub.T)),2) AS confirmation_rate FROM (
+SELECT Signups.user_id, IFNULL(SUM(action = 'confirmed'),0) AS C, IFNULL(SUM(action = 'timeout' OR action IS NULL),0) AS T FROM Signups LEFT JOIN Confirmations ON Signups.user_id = Confirmations.user_id GROUP BY Signups.user_id) AS sub;
