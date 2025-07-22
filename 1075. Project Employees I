@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+SELECT project_id, ROUND(sub.years / c, 2) as average_years FROM (
+    SELECT project_id, SUM(experience_years) AS years, COUNT(project_id) AS c FROM Project NATURAL LEFT JOIN Employee GROUP BY project_id  
+) AS sub;
