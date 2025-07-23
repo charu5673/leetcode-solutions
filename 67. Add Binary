@@ -1,0 +1,20 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        String ans = "";
+        boolean c = false;
+        for(int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
+            int s = 0;
+            if(i >= 0)
+            if(a.charAt(i) == '1') s++;
+            if(j >= 0)
+            if(b.charAt(j) == '1') s++;
+            if(c) s++;
+            if(s == 0 || s == 2) ans = "0" + ans;
+            else if(s == 1 || s == 3) ans = "1" + ans;
+            if(s >= 2) c = true;
+            else c = false;
+        }
+        if(c) ans = "1" + ans;
+        return ans;
+    }
+}
