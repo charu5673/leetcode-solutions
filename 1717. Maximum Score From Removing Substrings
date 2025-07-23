@@ -1,0 +1,38 @@
+class Solution {
+    public int maximumGain(String s, int x, int y) {
+        int c = 0;
+        Character max = (x >= y) ? 'a' : 'b';
+        Character min = (y > x) ? 'a' : 'b';
+        if(x < y) {
+            int t = x;
+            x = y;
+            y = t;
+        }
+        Stack<Character> stack = new Stack<>();
+        for(int i = 0; i < s.length(); i++) {
+            if(!stack.isEmpty()) {
+                if(s.charAt(i) == min && stack.peek() == max) {
+                    stack.pop();
+                    c += x;
+                    continue;
+                }
+            }
+            stack.push(s.charAt(i));
+        }
+        s = "";
+        while(!stack.isEmpty()) {
+            s = stack.pop() + s;
+        }
+        for(int i = 0; i < s.length(); i++) {
+            if(!stack.isEmpty()) {
+                if(s.charAt(i) == max && stack.peek() == min) {
+                    stack.pop();
+                    c += y;
+                    continue;
+                }
+            }
+            stack.push(s.charAt(i));
+        }
+        return c;
+    }
+}
