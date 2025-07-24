@@ -1,0 +1,24 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new LinkedList<>();
+        List<Integer> first = new LinkedList<>();
+        first.add(1);
+        List<Integer> last = new LinkedList<>();
+        last.add(1);
+        last.add(1);
+        ans.add(first);
+        if(numRows == 1) return ans;
+        ans.add(last);
+        for(int i = 2; i < numRows; i++) {
+            List<Integer> next = new LinkedList<>();
+            next.add(1);
+            for(int j = 1; j < i; j++) {
+                next.add(last.get(j - 1) + last.get(j));
+            }
+            next.add(1);
+            ans.add(next);
+            last = next;
+        }
+        return ans;
+    }
+}
