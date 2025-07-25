@@ -1,0 +1,9 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        for(int i = 0; i < ransomNote.length(); i++) {
+            if(magazine.contains(ransomNote.substring(i, i + 1))) magazine = magazine.replaceFirst(ransomNote.substring(i, i + 1), "");
+            else return false;
+        }
+        return true;
+    }
+}
