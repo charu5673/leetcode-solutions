@@ -1,0 +1,35 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character, String> ps = new HashMap<>();
+        HashMap<String, Character> sp = new HashMap<>();
+        String c = "";
+        int j = 0;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == ' ') {
+                char cr = pattern.charAt(j);
+                if(sp.containsKey(c)) {
+                    if(sp.get(c) != cr) return false;
+                } else {
+                    sp.put(c, cr);
+                }
+                if(ps.containsKey(cr)) {
+                    if(!ps.get(cr).equals(c)) return false;
+                } else {
+                    ps.put(cr, c);
+                }
+                j++;
+                if(j == pattern.length()) return false;
+                c = "";
+            } else c += s.charAt(i);
+        }
+        if(j != pattern.length() - 1) return false;
+        char cr = pattern.charAt(j);
+        if(sp.containsKey(c)) {
+            if(sp.get(c) != cr) return false;
+        }
+        if(ps.containsKey(cr)) {
+            if(!ps.get(cr).equals(c)) return false;
+        }
+        return true;
+    }
+}
