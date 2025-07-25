@@ -1,0 +1,11 @@
+class Solution {
+    public int firstUniqChar(String s) {
+        String orig = s;
+        while(s.length() > 0) {
+            String sub = s.substring(0, 1);
+            if(s.replaceAll(sub, "").length() == s.length() - 1) return orig.indexOf(sub);
+            s = s.replaceAll(sub, "");
+        }
+        return -1;
+    }
+}
