@@ -1,0 +1,9 @@
+class Solution {
+    public char findTheDifference(String s, String t) {
+        while(s.length() > 0) {
+            t = t.replaceFirst(s.substring(0, 1), "");
+            s = s.substring(1);
+        }
+        return t.charAt(0);
+    }
+}
