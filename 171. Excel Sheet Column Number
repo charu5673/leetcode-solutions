@@ -1,0 +1,11 @@
+class Solution {
+    public int titleToNumber(String columnTitle) {
+        int power = columnTitle.length() - 1;
+        int ans = 0;
+        for(int i = 0; i < columnTitle.length(); i++, power--) {
+            int x = (int)(columnTitle.charAt(i)) - 64;
+            ans += x * Math.pow(26, power);
+        }
+        return ans;
+    }
+}
