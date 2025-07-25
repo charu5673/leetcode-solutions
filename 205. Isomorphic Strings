@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character, Character> smap = new HashMap<>();
+        HashMap<Character, Character> tmap = new HashMap<>();
+        for(int i = 0; i < s.length(); i++) {
+            char sc = s.charAt(i);
+            char tc = t.charAt(i);
+            if(smap.containsKey(sc) && smap.get(sc) != tc) return false;
+            if(tmap.containsKey(tc) && tmap.get(tc) != sc) return false;
+            smap.putIfAbsent(sc, tc);
+            tmap.putIfAbsent(tc, sc);
+        }
+        return true;
+    }
+}
