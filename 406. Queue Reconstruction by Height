@@ -1,0 +1,26 @@
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        TreeMap<Integer, TreeSet<Integer>> t = new TreeMap<>();
+        for(int i = 0; i < people.length; i++) {
+            int h = people[i][0];
+            int x = people[i][1];
+            if(t.containsKey(people[i][0])) {
+                t.get(h).add(x);
+            } else {
+                TreeSet<Integer> tmp = new TreeSet<>();
+                tmp.add(x);
+                t.put(h, tmp);
+            }
+        }
+        LinkedList<int[]> l = new LinkedList<>();
+        for(Integer h : t.descendingKeySet()) {
+            for(Integer x : t.get(h)) {
+                int[] tmp = new int[2];
+                tmp[0] = h;
+                tmp[1] = x;
+                l.add(x, tmp);
+            }
+        }
+        return l.toArray(new int[l.size()][]);
+    }
+}
