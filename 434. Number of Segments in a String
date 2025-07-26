@@ -1,0 +1,17 @@
+class Solution {
+    public int countSegments(String s) {
+        s = s.trim();
+        if(s.length() == 0) return 0;
+        int c = 1;
+        boolean last = s.charAt(0) == ' ';
+        for(int i = 1; i < s.length(); i++) {
+            if(s.charAt(i) == ' ' && !last) {
+                c++;
+                last = true;
+            } else if(s.charAt(i) != ' ') {
+                last = false;
+            }
+        }
+        return c;
+    }
+}
