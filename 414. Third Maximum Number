@@ -1,0 +1,20 @@
+class Solution {
+    public int thirdMax(int[] nums) {
+        Arrays.sort(nums);
+        if(nums.length < 3) return nums[nums.length - 1];
+        int a = nums[nums.length - 1];
+        int b = a, c = a;
+        int i = nums.length - 2;
+        for(; i >= 0; i--) {
+            if(nums[i] != a) {
+                b = nums[i];
+                break;
+            }
+        }
+        if(i == -1) return a;
+        for(i = i - 1; i >= 0; i--) {
+            if(nums[i] != b) return nums[i];
+        }
+        return a;
+    }
+}
