@@ -1,0 +1,25 @@
+class Solution {
+    public String addStrings(String num1, String num2) {
+        int i = num1.length() - 1, j = num2.length() - 1;
+        boolean c = false;
+        String ans = "";
+        while(i >= 0 || j >= 0) {
+            int s = 0;
+            if(i >= 0) {
+                s += (int)num1.charAt(i) - 48;
+                i--;
+            }
+            if(j >= 0) {
+                s += (int)num2.charAt(j) - 48;
+                j--;
+            }
+            if(c) {
+                s++;
+            }
+            if(s > 9) c = true;
+            else c = false;
+            ans = s % 10 + ans;
+        }
+        return c ? "1" + ans : ans;
+    }
+}
