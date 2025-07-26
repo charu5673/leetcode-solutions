@@ -1,0 +1,17 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        int[] count = new int[123];
+        for(int i = 0; i < s.length(); i++) count[(int)s.charAt(i)]++;
+        int c = 0;
+        boolean o = false;
+        for(int i = 65; i <= 90; i++) {
+            c += count[i] / 2;
+            o = o || count[i] % 2 == 1;
+        }
+        for(int i = 97; i <= 122; i++) {
+            c += count[i] / 2;
+            o = o || count[i] % 2 == 1;
+        }
+        return (o) ? c * 2 + 1 : c * 2;
+    }
+}
