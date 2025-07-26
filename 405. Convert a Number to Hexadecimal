@@ -1,0 +1,18 @@
+class Solution {
+    public String getH(long n) {
+        if(n < 10) return n + "";
+        return (char)(n + 97 - 10) + "";
+    }
+    public String toHex(int n) {
+        if(n == 0) return "0";
+        long num = n;
+        String ans = "";
+        long max = 4294967295l;
+        if(num < 0) num = max + num + 1;
+        while(num > 0) {
+            ans = getH(num % 16) + ans;
+            num /= 16;
+        }
+        return ans;
+    }
+}
