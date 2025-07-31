@@ -1,0 +1,27 @@
+class Solution {
+    public boolean check(String s, String[] words) {
+        String[] c = new String[words.length];
+        int len = words[0].length();
+        for(int i = 0; i < c.length; i++) {
+            c[i] = s.substring(i * len, i * len + len);
+        }
+        Arrays.sort(c);
+        for(int i = 0; i < c.length; i++) {
+            if(!c[i].equals(words[i])) return false;
+        }
+        return true;
+    }
+    public List<Integer> findSubstring(String s, String[] words) {
+        int k = words[0].length() * words.length;
+        int w = words[0].length();
+        Arrays.sort(words);
+        LinkedList<Integer> ans = new LinkedList<Integer>();
+        int i = 0, j = k - 1;
+        while(j < s.length()) {
+            if(check(s.substring(i, j + 1), words)) ans.add(i);
+            i++;
+            j++;
+        }
+        return ans;
+    }
+}
