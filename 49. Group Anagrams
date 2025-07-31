@@ -1,0 +1,29 @@
+class Solution {
+    public String sort(String i) {
+        char[] a = i.toCharArray();
+        Arrays.sort(a);
+        String sorted = new String(a);
+        return sorted;
+    }
+    public List<List<String>> groupAnagrams(String[] strs) {
+        String[] a = new String[strs.length];
+        for(int i = 0; i < strs.length; i++) {
+            a[i] = sort(strs[i]);
+        }
+        HashMap<String, LinkedList<String>> an = new HashMap<>();
+        for(int i = 0; i < strs.length; i++) {
+            if(an.containsKey(a[i])) {
+                an.get(a[i]).add(strs[i]);
+            } else {
+                LinkedList<String> l = new LinkedList<>();
+                l.add(strs[i]);
+                an.put(a[i], l);
+            }
+        }
+        List<List<String>> ans = new LinkedList<>();
+        for(LinkedList<String> k : an.values()) {
+            ans.add(k);
+        }
+        return ans;
+    }
+}
