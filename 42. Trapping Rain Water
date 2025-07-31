@@ -1,0 +1,19 @@
+class Solution {
+    public int trap(int[] height) {
+        int w = 0;
+        int i = 0, j = height.length - 1;
+        int l = 0;
+        int r = 0;
+        while(i <= j) {
+            if(height[i] > l) l = height[i];
+            if(height[j] > r) r = height[j];
+            w += Math.max(Math.min(l, r) - height[i], 0);
+            if(i != j)
+            w += Math.max(Math.min(l, r) - height[j], 0);
+            if(l > r) {
+                j--;
+            } else i++;
+        }
+        return w;
+    }
+}
