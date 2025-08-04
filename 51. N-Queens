@@ -1,0 +1,55 @@
+class Solution {
+    boolean[][] b;
+    List<List<String>> ans = new LinkedList<>();
+    public void generateString() {
+        LinkedList<String> l = new LinkedList<>();
+        for(int i = 0; i < b.length; i++) {
+            String s = "";
+            for(int j = 0; j < b[i].length; j++) {
+                if(b[i][j]) s += "Q";
+                else s += ".";
+            }
+            l.add(s);
+        }
+        ans.add(l);
+    }
+    public void count(int n, int r)
+    {
+        if(r==n) {
+            generateString();
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(isOk(r,i,n))
+            {
+                b[r][i]=true;
+                count(n,r+1);
+                b[r][i]=false;
+            }
+        }
+    }
+    public boolean isOk(int i,int j,int n)
+    {
+        for(int k=0;k<i;k++)
+        {
+            if(b[k][j])
+            return false;
+        }
+        for(int k=i,l=j;k>=0&&l>=0;k--,l--)
+        {
+            if(b[k][l])
+            return false;
+        }
+        for(int k=i,l=j;k>=0&&l<n;k--,l++)
+        {
+            if(b[k][l])
+            return false;
+        }
+        return true;
+    }
+    public List<List<String>> solveNQueens(int n) {
+        b = new boolean[n][n];
+        count(n, 0);
+        return ans;
+    }
+}
