@@ -1,0 +1,29 @@
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> ans = new LinkedList<>();
+        int is = 0, ie = matrix.length - 1, js = 0, je = matrix[0].length - 1;
+        int i, j;
+        while(is <= ie && js <= je) {
+            for(j = js; j <= je; j++) {
+                ans.add(matrix[is][j]);
+            }
+            is++;
+            if(is > ie || js > je) break;
+            for(i = is; i <= ie; i++) {
+                ans.add(matrix[i][je]);
+            }
+            je--;
+            if(is > ie || js > je) break;
+            for(j = je; j >= js; j--) {
+                ans.add(matrix[ie][j]);
+            }
+            ie--;
+            if(is > ie || js > je) break;
+            for(i = ie; i >= is; i--) {
+                ans.add(matrix[i][js]);
+            }
+            js++;
+        }
+        return ans;
+    }
+}
