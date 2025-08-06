@@ -1,0 +1,33 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] matrix = new int[n][n];
+        int is = 0, ie = n - 1, js = 0, je = n - 1;
+        int i, j, c = 1;
+        while(is <= ie && js <= je) {
+            for(j = js; j <= je; j++) {
+                matrix[is][j] = c;
+                c++;
+            }
+            is++;
+            if(is > ie || js > je) break;
+            for(i = is; i <= ie; i++) {
+                matrix[i][je] = c;
+                c++;
+            }
+            je--;
+            if(is > ie || js > je) break;
+            for(j = je; j >= js; j--) {
+                matrix[ie][j] = c;
+                c++;
+            }
+            ie--;
+            if(is > ie || js > je) break;
+            for(i = ie; i >= is; i--) {
+                matrix[i][js] = c;
+                c++;
+            }
+            js++;
+        }
+        return matrix;
+    }
+}
