@@ -1,0 +1,62 @@
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        if(intervals.length == 0) {
+            int[][] ans = new int[1][2];
+            ans[0][0] = newInterval[0];
+            ans[0][1] = newInterval[1];
+            return ans;
+        }
+        int f = 0, l = intervals.length - 1;
+        int low = f;
+        while(f <= l) {
+            int m = (f + l) / 2;
+            if(intervals[m][0] == newInterval[0]) {
+                low = m;
+                break;
+            }
+            if(intervals[m][0] < newInterval[0]) {
+                f = m + 1;
+                low = m;
+            } else {
+                l = m - 1;
+            }
+        }
+        LinkedList<int[]> li = new LinkedList<>();
+        for(int i = 0; i < low; i++) {
+            li.add(intervals[i]);
+        }
+        int s, e;
+        if((intervals[low][1] >= newInterval[0] && intervals[low][0] <= newInterval[0]) || (intervals[low][0] >= newInterval[0] && intervals[low][0] <= newInterval[1])) {
+            s = Math.min(intervals[low][0], newInterval[0]);
+            e = Math.max(intervals[low][1], newInterval[1]);
+        } else if(intervals[low][0] <= newInterval[0]) {
+            li.add(intervals[low]);
+            s = newInterval[0];
+            e = newInterval[1];
+        } else {
+            li.add(newInterval);
+            s = intervals[low][0];
+            e = intervals[low][1];
+        }
+
+        for(int i = low + 1; i < intervals.length; i++) {
+            if(e >= intervals[i][0]) {
+                e = Math.max(intervals[i][1], e);
+            } else {
+                int[] a = new int[2];
+                a[0] = s;
+                a[1] = e;
+                s = intervals[i][0];
+                e = intervals[i][1];
+                li.add(a);
+            }
+        }
+        int[] a = new int[2];
+        a[0] = s;
+        a[1] = e;
+        li.add(a);
+        int[][] ans = new int[li.size()][2];
+        li.toArray(ans);
+        return ans;
+    }
+}
