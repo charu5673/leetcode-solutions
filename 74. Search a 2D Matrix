@@ -1,0 +1,33 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int n = matrix[0].length;
+        int f = 0, l = matrix.length - 1;
+        int m = 0;
+        while(f <= l) {
+            int mi = (f + l) / 2;
+            if(matrix[mi][0] <= target && matrix[mi][n - 1] >= target) {
+                m = mi;
+                break;
+            }
+            if(matrix[mi][n - 1] < target) {
+                f = mi + 1;
+            } else {
+                l = mi - 1;
+            }
+        }
+        f = 0;
+        l = n - 1;
+        while(f <= l) {
+            int mi = (f + l) / 2;
+            if(matrix[m][mi] == target) {
+                return true;
+            }
+            if(matrix[m][mi] < target) {
+                f = mi + 1;
+            } else {
+                l = mi - 1;
+            }
+        }
+        return false;
+    }
+}
